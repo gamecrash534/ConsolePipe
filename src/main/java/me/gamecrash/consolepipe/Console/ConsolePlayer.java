@@ -29,6 +29,7 @@ public class ConsolePlayer {
     public Player getPlayer() {
         return Bukkit.getPlayer(uuid);
     }
+    public String getFormat() { return formatRegex; }
 
     @Override
     public boolean equals(Object obj) {
