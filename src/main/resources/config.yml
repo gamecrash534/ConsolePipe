@@ -1,4 +1,4 @@
-prefix: "<gray>[<yellow>Console<white>Pipe<gray>]<white>: "
+prefix: "<dark_gray>[<yellow>Console<white>Pipe<dark_gray>]<white>: "
 prefixEnabled: true
 pipeFormat: "<dark_gray>[<gray>%timestamp%<dark_gray>] [<gold>%sender%<dark_gray>]<gray>: <white>%message%"
 
