@@ -41,7 +41,7 @@ public final class ConsolePipe extends JavaPlugin {
     }
 
     public static ConsolePipe getPlugin() {
-        return (ConsolePipe) Bukkit.getPluginManager().getPlugin("TPSLimiter");
+        return (ConsolePipe) Bukkit.getPluginManager().getPlugin("ConsolePipe");
     }
     public void setFilterPlayers(ArrayList<ConsolePlayer> players) {
         if (filter != null) {
