@@ -1,6 +1,5 @@
 package me.gamecrash.consolepipe.Console;
 
-import me.gamecrash.consolepipe.ConsolePipe;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.filter.AbstractFilter;
 
@@ -12,8 +11,6 @@ import static me.gamecrash.consolepipe.Utils.MessageUtils.returnConfig;
 import static me.gamecrash.consolepipe.Utils.Messages.*;
 
 public class ConsoleFilter extends AbstractFilter {
-    private final ConsolePipe plugin = ConsolePipe.getPlugin();
-
     private List<ConsolePlayer> players;
 
     public ConsoleFilter(List<ConsolePlayer> players) {
