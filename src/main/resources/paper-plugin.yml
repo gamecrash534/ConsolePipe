@@ -1,0 +1,8 @@
+name: ConsolePipe
+version: '1.0-SNAPSHOT'
+main: me.gamecrash.consolepipe.ConsolePipe
+api-version: '1.21'
+prefix: ConsolePipe
+load: STARTUP
+authors: [ game.crash ]
+description: A plugin to pipe the console outputs to a player
