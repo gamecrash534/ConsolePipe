@@ -6,3 +6,24 @@ prefix: ConsolePipe
 load: STARTUP
 authors: [ game.crash ]
 description: A plugin to pipe the console outputs to a player
+permissions:
+  consolepipe:
+    description: Base Command
+    default: true
+    children:
+      consolepipe.command:
+        description: Base Command
+        default: true
+        children:
+          consolepipe.command.pipe:
+            description: Pipe the console output to a player
+            default: true
+          consolepipe.command.unpipe:
+            description: Unpipe the console output from a player
+            default: true
+          consolepipe.command.list:
+            description: List all players that are piped to the console
+            default: true
+          consolepipe.command.reload:
+            description: Reload the plugin
+            default: true

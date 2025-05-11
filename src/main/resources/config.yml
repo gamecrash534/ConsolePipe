@@ -1,0 +1,10 @@
+prefix: "<gray>[<yellow>Console<white>Pipe<gray>]<white>: "
+prefixEnabled: true
+pipeFormat: "<dark_gray>[<gold>%timestamp%<dark_gray>] [<white>%sender%<dark_gray>]<gray>: <white>%message%"
+
+messages:
+    base: "<white>ConsolePipe v${project.version} by game.crash"
+    no-permission: "You do not have permission to use this command."
+    no-player: "You must be a player to use this command."
+    piped: "You have been piped!"
+    unpiped: "You have been unpiped!"
