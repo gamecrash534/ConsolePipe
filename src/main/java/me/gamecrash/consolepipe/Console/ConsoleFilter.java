@@ -29,7 +29,7 @@ public class ConsoleFilter extends AbstractFilter {
         for (ConsolePlayer player : players) {
             if (msg.matches(player.denyRegex)) {
             } else {
-                msg = msg.replaceAll(player.formatRegex, pipePattern);
+                //msg = msg.replaceAll(player.formatRegex, pipePattern);
                 player.getPlayer().sendMessage(message(formatPipedMessage(msg, sender)));
             }
 
@@ -39,7 +39,7 @@ public class ConsoleFilter extends AbstractFilter {
     }
 
     private String formatPipedMessage(String message, String sender) {
-        return returnConfig(pipePattern).replace("%timestamp%", String.valueOf(LocalTime.now()))
+        return returnConfig(pipePattern).replace("%timestamp%", String.valueOf(LocalTime.now()).replaceAll("\\..*", ""))
             .replace("%sender%", sender)
             .replace("%message%", message);
     }
