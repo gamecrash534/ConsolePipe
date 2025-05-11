@@ -17,7 +17,8 @@ public class ConsolePipeCommand {
             .executes(ctx -> {
                 ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_BASE)));
                 return 1;
-            });
+            })
+            .then(pipeCommand());
 
         return builder.build();
     }
