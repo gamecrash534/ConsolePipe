@@ -8,6 +8,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import static me.gamecrash.consolepipe.Utils.MessageUtils.message;
+import static me.gamecrash.consolepipe.Utils.MessageUtils.returnConfig;
 import static me.gamecrash.consolepipe.Utils.Messages.*;
 
 public class ConsoleFilter extends AbstractFilter {
@@ -38,7 +39,7 @@ public class ConsoleFilter extends AbstractFilter {
     }
 
     private String formatPipedMessage(String message, String sender) {
-        return pipePattern.replace("%timestamp%", String.valueOf(LocalTime.now()))
+        return returnConfig(pipePattern).replace("%timestamp%", String.valueOf(LocalTime.now()))
             .replace("%sender%", sender)
             .replace("%message%", message);
     }
