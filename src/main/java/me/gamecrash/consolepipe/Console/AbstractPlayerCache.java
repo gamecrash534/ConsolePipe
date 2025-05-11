@@ -9,7 +9,6 @@ import java.util.List;
 public abstract class AbstractPlayerCache extends AbstractFilter {
     protected final List<ConsolePlayer> players = new ArrayList<>();
 
-
     public void clear() {
         players.clear();
     }

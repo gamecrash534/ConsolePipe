@@ -9,7 +9,6 @@ import java.util.List;
 import static me.gamecrash.consolepipe.Utils.MessageUtils.*;
 
 public class ConsolePlayerManager extends AbstractPlayerCache {
-    protected final List<ConsolePlayer> players = new ArrayList<>();
 
     public Filter.Result filter(LogEvent e) {
         String sender = e.getLoggerName() == null ? "Console" : e.getLoggerName();
