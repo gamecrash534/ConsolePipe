@@ -14,7 +14,7 @@ public class PipeCommand {
         return Commands.literal("pipe")
             .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND_PIPE))
             .executes(ctx -> {
-                plugin.getCache().addPlayer((Player) ctx.getSource().getSender(), "", "");
+                plugin.getManager().addPlayer((Player) ctx.getSource().getSender());
                 ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_PIPED)));
                 return 1;
             })

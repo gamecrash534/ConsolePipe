@@ -14,7 +14,7 @@ public class UnpipeCommand {
         return Commands.literal("unpipe")
             .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND_UNPIPE))
             .executes(ctx -> {
-                plugin.getCache().removePlayer((Player) ctx.getSource().getSender());
+                plugin.getManager().removePlayer((Player) ctx.getSource().getSender());
                 ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_UNPIPED)));
                 return 1;
             })
