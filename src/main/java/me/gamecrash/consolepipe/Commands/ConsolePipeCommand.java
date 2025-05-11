@@ -18,7 +18,9 @@ public class ConsolePipeCommand {
                 ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_BASE)));
                 return 1;
             })
-            .then(pipeCommand());
+            .then(pipeCommand())
+            .then(unpipeCommand())
+            ;
 
         return builder.build();
     }
@@ -28,6 +30,16 @@ public class ConsolePipeCommand {
             .executes(ctx -> {
                 plugin.getCache().addPlayer((Player) ctx.getSource().getSender(), "", "");
                 ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_PIPED)));
+                return 1;
+            })
+            .build();
+    }
+    public LiteralCommandNode<CommandSourceStack> unpipeCommand() {
+        return Commands.literal("unpipe")
+            .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND_UNPIPE))
+            .executes(ctx -> {
+                plugin.getCache().removePlayer((Player) ctx.getSource().getSender());
+                ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_UNPIPED)));
                 return 1;
             })
             .build();

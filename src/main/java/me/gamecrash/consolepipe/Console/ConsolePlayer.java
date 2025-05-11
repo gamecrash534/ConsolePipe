@@ -18,6 +18,10 @@ public class ConsolePlayer {
         this.formatRegex = formatRegex;
         this.denyRegex = denyRegex;
     }
+    public ConsolePlayer(UUID uuid, String name) {
+        this.uuid = uuid;
+        this.name = name;
+    }
     public UUID getUuid() {
         return uuid;
     }

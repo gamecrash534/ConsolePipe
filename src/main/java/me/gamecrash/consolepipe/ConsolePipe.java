@@ -29,7 +29,13 @@ public final class ConsolePipe extends JavaPlugin {
     }
 
     @Override
-    public void onDisable() { }
+    public void onDisable() {
+        Logger root = (Logger) LogManager.getRootLogger();
+        filter.stop();
+        if (cache != null) {
+            cache.clear();
+        }
+    }
 
     public void reload() {
         getConfig().options().copyDefaults();

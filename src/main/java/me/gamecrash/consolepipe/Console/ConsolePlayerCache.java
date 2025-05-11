@@ -34,9 +34,9 @@ public class ConsolePlayerCache {
         }
         plugin.setFilterPlayers(players);
     }
-    public void removePlayer(Player player, String formatReg, String denyReg) {
+    public void removePlayer(Player player) {
         if (player == null) return;
-        ConsolePlayer consolePlayer = new ConsolePlayer(player.getUniqueId(), player.getName(), formatReg, denyReg);
+        ConsolePlayer consolePlayer = new ConsolePlayer(player.getUniqueId(), player.getName());
         if (containsPlayer(consolePlayer)) {
             players.remove(consolePlayer);
         }
