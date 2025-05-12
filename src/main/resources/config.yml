@@ -3,9 +3,12 @@ prefixEnabled: true
 pipeFormat: "<dark_gray>[<gray>%timestamp%<dark_gray>] [<gold>%sender%<dark_gray>]<gray>:<newline><white>%message%"
 
 messages:
-    base: "<white>ConsolePipe v${project.version} by game.crash"
     no-permission: "You do not have permission to use this command."
     no-player: "You must be a player to use this command."
     piped: "You have been piped!"
     unpiped: "You have been unpiped!"
+    already-piped: "You are already piped!"
+    already-unpiped: "You are already unpiped!"
+    list: "<white>Players currently piped:<newline><red>%players%"
+    no-list: "No players are currently piped!"
     reload: "<red>Reloaded ConsolePipe!"

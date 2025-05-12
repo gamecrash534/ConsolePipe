@@ -7,19 +7,19 @@ import io.papermc.paper.command.brigadier.Commands;
 
 import static me.gamecrash.consolepipe.Utils.MessageUtils.*;
 import static me.gamecrash.consolepipe.Utils.Permissions.*;
-import static me.gamecrash.consolepipe.Utils.Messages.*;
 
 public class ConsolePipeCommand {
     public LiteralCommandNode<CommandSourceStack> build() {
         LiteralArgumentBuilder<CommandSourceStack> builder = Commands.literal("consolepipe")
             .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND))
             .executes(ctx -> {
-                ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_BASE)));
+                ctx.getSource().getSender().sendMessage(message("<white>ConsolePipe v${project.version} by game.crash"));
                 return 1;
             })
             .then(new PipeCommand().build())
             .then(new UnpipeCommand().build())
             .then(new ReloadCommand().build())
+            .then(new ListCommand().build())
             ;
 
         return builder.build();
