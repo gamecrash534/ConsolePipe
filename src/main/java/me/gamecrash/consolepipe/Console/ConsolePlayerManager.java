@@ -3,9 +3,6 @@ package me.gamecrash.consolepipe.Console;
 import org.apache.logging.log4j.core.Filter;
 import org.apache.logging.log4j.core.LogEvent;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static me.gamecrash.consolepipe.Utils.MessageUtils.*;
 
 public class ConsolePlayerManager extends AbstractPlayerCache {
@@ -15,7 +12,7 @@ public class ConsolePlayerManager extends AbstractPlayerCache {
         String msg = removeAnsiCodes(e.getMessage().getFormattedMessage());
         players.stream()
             .filter(player -> !msg.matches(player.denyRegex))
-            .forEach(player -> player.getPlayer().sendMessage(message(formatPipedMessage(msg, sender))));
+            .forEach(player -> player.getPlayer().sendMessage(returnComponent(formatPipedMessage(msg, sender))));
         return Filter.Result.NEUTRAL;
     }
 }

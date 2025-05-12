@@ -9,7 +9,7 @@ import java.time.LocalTime;
 import static me.gamecrash.consolepipe.Utils.Messages.*;
 
 public class MessageUtils {
-    public static final ConsolePipe plugin = ConsolePipe.getPlugin();
+    private static final ConsolePipe plugin = ConsolePipe.getPlugin();
 
     public static String returnPrefix(String message) {
         boolean enabled = plugin.getConfig().getBoolean("prefixEnabled");

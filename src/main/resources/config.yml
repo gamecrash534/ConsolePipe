@@ -8,3 +8,4 @@ messages:
     no-player: "You must be a player to use this command."
     piped: "You have been piped!"
     unpiped: "You have been unpiped!"
+    reload: "<red>Reloaded ConsolePipe!"

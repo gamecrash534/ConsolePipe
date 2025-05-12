@@ -8,4 +8,5 @@ public class Messages {
     public static final String MESSAGE_NO_PLAYER = "messages.no-player";
     public static final String MESSAGE_PIPED = "messages.piped";
     public static final String MESSAGE_UNPIPED = "messages.unpiped";
+    public static final String MESSAGE_RELOAD = "messages.reload";
 }

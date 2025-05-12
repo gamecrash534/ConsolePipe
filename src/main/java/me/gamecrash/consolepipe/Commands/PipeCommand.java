@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import static me.gamecrash.consolepipe.Utils.MessageUtils.*;
 import static me.gamecrash.consolepipe.Utils.Messages.MESSAGE_PIPED;
 import static me.gamecrash.consolepipe.Utils.Permissions.PERMISSION_COMMAND_PIPE;
+import static me.gamecrash.consolepipe.ConsolePipe.plugin;
 
 public class PipeCommand {
     public LiteralCommandNode<CommandSourceStack> build() {

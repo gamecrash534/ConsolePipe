@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import static me.gamecrash.consolepipe.Utils.MessageUtils.*;
 import static me.gamecrash.consolepipe.Utils.Messages.MESSAGE_UNPIPED;
 import static me.gamecrash.consolepipe.Utils.Permissions.PERMISSION_COMMAND_UNPIPE;
+import static me.gamecrash.consolepipe.ConsolePipe.plugin;
 
 public class UnpipeCommand {
     public LiteralCommandNode<CommandSourceStack> build() {
