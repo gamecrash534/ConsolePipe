@@ -1,4 +1,4 @@
-package me.gamecrash.consolepipe.Events;
+package me.gamecrash.consolepipe.Listeners;
 
 import me.gamecrash.consolepipe.Console.ConsolePlayerManager;
 import me.gamecrash.consolepipe.ConsolePipe;

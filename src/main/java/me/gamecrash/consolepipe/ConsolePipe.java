@@ -3,7 +3,7 @@ package me.gamecrash.consolepipe;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import me.gamecrash.consolepipe.Commands.ConsolePipeCommand;
 import me.gamecrash.consolepipe.Console.ConsolePlayerManager;
-import me.gamecrash.consolepipe.Events.PlayerLeaveHandler;
+import me.gamecrash.consolepipe.Listeners.PlayerLeaveHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.bukkit.Bukkit;

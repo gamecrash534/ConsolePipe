@@ -23,7 +23,7 @@ public abstract class AbstractPlayerCache extends AbstractFilter {
     public void addPlayer(Player player) {
         if (player == null) return;
         ConsolePlayer consolePlayer = new ConsolePlayer(player.getUniqueId(), player.getName());
-        if (players.stream().noneMatch(p -> p.equals(consolePlayer))) {
+        if (!players.contains(consolePlayer)) {
             players.add(consolePlayer);
         }
     }
