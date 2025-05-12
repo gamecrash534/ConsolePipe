@@ -11,7 +11,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class ConsolePipe extends JavaPlugin {
     private ConsolePlayerManager manager;
-    public final static ConsolePipe plugin = ConsolePipe.getPlugin();
 
     @Override
     public void onEnable() {
