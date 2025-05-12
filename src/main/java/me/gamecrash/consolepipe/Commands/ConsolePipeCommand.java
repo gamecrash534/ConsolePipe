@@ -18,7 +18,8 @@ public class ConsolePipeCommand {
                 return 1;
             })
             .then(new PipeCommand().build())
-            .then(new UnpipeCommand().build());
+            .then(new UnpipeCommand().build())
+            .then(new ReloadCommand().build())
             ;
 
         return builder.build();
