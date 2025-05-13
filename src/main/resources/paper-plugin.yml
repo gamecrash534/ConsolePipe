@@ -13,17 +13,25 @@ permissions:
     children:
       consolepipe.command:
         description: Base Command
-        default: true
+        default: op
         children:
           consolepipe.command.pipe:
             description: Pipe the console output to a player
-            default: true
+            default: op
+            children:
+              consolepipe.command.pipe.other:
+                description: Pipe the console output to another player
+                default: op
           consolepipe.command.unpipe:
             description: Unpipe the console output from a player
-            default: true
+            default: op
+            children:
+              consolepipe.command.unpipe.other:
+                description: Unpipe the console output from another player
+                default: op
           consolepipe.command.list:
             description: List all players that are piped to the console
-            default: true
+            default: op
           consolepipe.command.reload:
             description: Reload the plugin
-            default: true
+            default: op

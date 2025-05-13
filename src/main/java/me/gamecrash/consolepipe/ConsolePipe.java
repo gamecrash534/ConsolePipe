@@ -47,6 +47,5 @@ public final class ConsolePipe extends JavaPlugin {
     public static ConsolePipe getPlugin() {
         return (ConsolePipe) Bukkit.getPluginManager().getPlugin("ConsolePipe");
     }
-
     public ConsolePlayerManager getManager() { return manager; }
 }

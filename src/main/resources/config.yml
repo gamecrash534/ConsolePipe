@@ -9,6 +9,11 @@ messages:
     unpiped: "You have been unpiped!"
     already-piped: "You are already piped!"
     already-unpiped: "You are already unpiped!"
+    piped-player: "<white>%player%<gray> has been piped!"
+    unpiped-player: "<white>%player%<gray> has been unpiped!"
+    player-already-piped: "<white>%player%<gray> is already piped!"
+    player-already-unpiped: "<white>%player%<gray> is already unpiped!"
+
     list: "<white>Players currently piped:<newline><red>%players%"
     no-list: "No players are currently piped!"
     reload: "<red>Reloaded ConsolePipe!"

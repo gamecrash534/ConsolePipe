@@ -12,4 +12,8 @@ public class Messages {
     public static final String MESSAGE_ALREADY_UNPIPED = "messages.already-unpiped";
     public static final String MESSAGE_LIST = "messages.list";
     public static final String MESSAGE_NO_LIST = "messages.no-list";
+    public static final String MESSAGE_PIPED_PLAYER = "messages.piped-player";
+    public static final String MESSAGE_UNPIPED_PLAYER = "messages.unpiped-player";
+    public static final String MESSAGE_PLAYER_ALREADY_PIPED = "messages.player-already-piped";
+    public static final String MESSAGE_PLAYER_ALREADY_UNPIPED = "messages.player-already-unpiped";
 }
