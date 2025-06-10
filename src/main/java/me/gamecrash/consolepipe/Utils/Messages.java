@@ -18,4 +18,5 @@ public class Messages {
     public static final String MESSAGE_PLAYER_ALREADY_UNPIPED = "messages.player-already-unpiped";
     public static final String MESSAGE_FILTER_SET = "messages.filter-set";
     public static final String MESSAGE_FILTER_SET_OTHER = "messages.filter-set-player";
+    public static final String MESSAGE_NOT_REGISTERED = "messages.not-registered";
 }

@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 
 import static me.gamecrash.consolepipe.Utils.MessageUtils.*;
 import static me.gamecrash.consolepipe.Utils.Permissions.*;
+import static me.gamecrash.consolepipe.Utils.Utils.checkSenderIsPlayer;
 import static me.gamecrash.consolepipe.Utils.Utils.resolveArgumentPlayer;
 import static me.gamecrash.consolepipe.Utils.Messages.*;
 
@@ -36,6 +37,14 @@ public class FilterCommand {
     }
 
     private int handleCommand(CommandContext<CommandSourceStack> ctx ) {
+        if (!checkPlayer((Player) ctx.getSource().getSender())) {
+            ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_NOT_REGISTERED)));
+            return 1;
+        }
+        if (!checkSenderIsPlayer(ctx.getSource().getSender())) {
+            ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_NO_PLAYER)));
+            return 1;
+        }
         ConsolePlayer player = manager.getPlayer((Player) ctx.getSource().getSender());
         String regex = StringArgumentType.getString(ctx, "regex");
         player.setDenyReg(regex);
@@ -43,10 +52,19 @@ public class FilterCommand {
         return 1;
     }
     private int handleCommand(Player targetPlayer, CommandContext<CommandSourceStack> ctx) {
+        if (!checkPlayer(targetPlayer))  {
+            ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_NOT_REGISTERED)));
+            return 1;
+        }
         ConsolePlayer player = manager.getPlayer(targetPlayer);
         String regex = StringArgumentType.getString(ctx, "player_reg");
         player.setDenyReg(regex);
-        ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_FILTER_SET_OTHER).replace("%player%", targetPlayer.getName())));
+        ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_FILTER_SET_OTHER)));
         return 1;
+    }
+
+    private boolean checkPlayer(Player targetPlayer) {
+        if (targetPlayer == null) return false;
+        return manager.contains(targetPlayer);
     }
 }

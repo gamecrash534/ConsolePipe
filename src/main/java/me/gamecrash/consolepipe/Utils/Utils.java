@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Utils {
-    public static boolean checkPlayer(CommandSender sender) {
+    public static boolean checkSenderIsPlayer(CommandSender sender) {
         return sender instanceof Player;
     }
     public static Player resolveArgumentPlayer(CommandContext<CommandSourceStack> ctx) {
