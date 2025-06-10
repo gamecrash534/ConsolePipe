@@ -14,7 +14,7 @@ public class ConsolePlayerManager extends AbstractPlayerCache {
         String msg = removeAnsiCodes(e.getMessage().getFormattedMessage());
         players.stream()
             .filter(player -> !msg.matches(player.getDenyReg()))
-            .filter(player -> e.getLoggerName().matches(player.getDenyReg()))
+            .filter(player -> !e.getLoggerName().matches(player.getDenyReg()))
             .forEach(player -> player.getPlayer().sendMessage(returnComponent(formatPipedMessage(msg, sender))));
         return Filter.Result.NEUTRAL;
     }
