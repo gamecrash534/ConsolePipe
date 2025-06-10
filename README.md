@@ -16,3 +16,6 @@ It is also pretty insecure, because you might accidentally view stuff that shoul
 - `unpipe` : "unpipe" yourself from the console, to not receive outputs anymore
   - `[player]` : "unpipe" the output to a specific player
 - `reload` : Reload the plugin configs and remove all piped players
+- `filter`
+  - `<filter regex>` : Filter the console output for yourself, to only see messages that don't match the regex
+  - `[player] <filter regex>` : Filter the console output for a specific player
