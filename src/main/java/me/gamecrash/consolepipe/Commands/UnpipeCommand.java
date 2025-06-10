@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import static me.gamecrash.consolepipe.Utils.MessageUtils.*;
 import static me.gamecrash.consolepipe.Utils.Messages.*;
 import static me.gamecrash.consolepipe.Utils.Permissions.*;
-import static me.gamecrash.consolepipe.Utils.Utils.checkPlayer;
+import static me.gamecrash.consolepipe.Utils.Utils.checkSenderIsPlayer;
 import static me.gamecrash.consolepipe.Utils.Utils.resolveArgumentPlayer;
 
 public class UnpipeCommand {
@@ -22,7 +22,7 @@ public class UnpipeCommand {
     public LiteralCommandNode<CommandSourceStack> build() {
         return Commands.literal("unpipe")
             .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND_UNPIPE))
-            .executes(ctx -> handleCommand((Player) ctx.getSource().getSender()))
+            .executes(ctx -> handleCommand(ctx.getSource().getSender()))
             .then(Commands.argument("player", ArgumentTypes.player())
                 .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND_UNPIPE_PLAYER))
                 .executes(ctx -> {
@@ -33,16 +33,16 @@ public class UnpipeCommand {
             .build();
     }
 
-    private int handleCommand(Player player) {
-        if (!checkPlayer(player)) {
+    private int handleCommand(CommandSender player) {
+        if (!checkSenderIsPlayer(player)) {
             player.sendMessage(message(returnConfig(MESSAGE_NO_PLAYER)));
             return 1;
         }
-        if (!manager.contains(player)) {
+        if (!manager.contains((Player) player)) {
             player.sendMessage(message(returnConfig(MESSAGE_ALREADY_UNPIPED)));
             return 1;
         }
-        manager.removePlayer(player);
+        manager.removePlayer((Player) player);
         player.sendMessage(message(returnConfig(MESSAGE_UNPIPED)));
         return 1;
     }

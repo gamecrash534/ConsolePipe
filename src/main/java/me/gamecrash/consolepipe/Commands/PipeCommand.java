@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import static me.gamecrash.consolepipe.Utils.MessageUtils.*;
 import static me.gamecrash.consolepipe.Utils.Messages.*;
 import static me.gamecrash.consolepipe.Utils.Permissions.*;
-import static me.gamecrash.consolepipe.Utils.Utils.checkPlayer;
+import static me.gamecrash.consolepipe.Utils.Utils.checkSenderIsPlayer;
 import static me.gamecrash.consolepipe.Utils.Utils.resolveArgumentPlayer;
 
 public class PipeCommand {
@@ -22,7 +22,7 @@ public class PipeCommand {
     public LiteralCommandNode<CommandSourceStack> build() {
         return Commands.literal("pipe")
             .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND_PIPE))
-            .executes(ctx -> handleCommand((Player) ctx.getSource().getSender()))
+            .executes(ctx -> handleCommand(ctx.getSource().getSender()))
             .then(Commands.argument("player", ArgumentTypes.player())
                 .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND_PIPE_PLAYER))
                 .executes(ctx -> {
@@ -33,16 +33,16 @@ public class PipeCommand {
             .build();
     }
 
-    private int handleCommand(Player player) {
-        if (!checkPlayer(player)) {
+    private int handleCommand(CommandSender player) {
+        if (!checkSenderIsPlayer(player)) {
             player.sendMessage(message(returnConfig(MESSAGE_NO_PLAYER)));
             return 1;
         }
-        if (manager.contains(player)) {
+        if (manager.contains((Player) player)) {
             player.sendMessage(message(returnConfig(MESSAGE_ALREADY_PIPED)));
             return 1;
         }
-        manager.addPlayer(player);
+        manager.addPlayer((Player) player);
         player.sendMessage(message(returnConfig(MESSAGE_PIPED)));
         return 1;
     }
