@@ -12,9 +12,19 @@ public abstract class AbstractPlayerCache extends AbstractFilter {
     public void clear() {
         players.clear();
     }
+
     public List<ConsolePlayer> getPlayers() {
         return new ArrayList<>(players);
     }
+
+    public ConsolePlayer getPlayer(Player player) {
+        if (player == null) return null;
+        return players.stream()
+                .filter(p -> p.getUuid().equals(player.getUniqueId()))
+                .findFirst()
+                .orElse(null);
+    }
+
     public boolean contains(Player player) {
         if (player == null) return false;
         return players.stream().anyMatch(p -> p.getUuid().equals(player.getUniqueId()));

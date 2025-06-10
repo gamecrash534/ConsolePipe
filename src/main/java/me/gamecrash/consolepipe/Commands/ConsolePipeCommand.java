@@ -20,6 +20,7 @@ public class ConsolePipeCommand {
             .then(new UnpipeCommand().build())
             .then(new ReloadCommand().build())
             .then(new ListCommand().build())
+            .then(new FilterCommand().build())
             ;
 
         return builder.build();

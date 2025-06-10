@@ -1,12 +1,9 @@
 package me.gamecrash.consolepipe.Commands;
 
-import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
-import io.papermc.paper.command.brigadier.argument.resolvers.selector.PlayerSelectorArgumentResolver;
 import me.gamecrash.consolepipe.Console.ConsolePlayerManager;
 import me.gamecrash.consolepipe.ConsolePipe;
 import org.bukkit.command.CommandSender;
@@ -16,6 +13,7 @@ import static me.gamecrash.consolepipe.Utils.MessageUtils.*;
 import static me.gamecrash.consolepipe.Utils.Messages.*;
 import static me.gamecrash.consolepipe.Utils.Permissions.*;
 import static me.gamecrash.consolepipe.Utils.Utils.checkPlayer;
+import static me.gamecrash.consolepipe.Utils.Utils.resolveArgumentPlayer;
 
 public class UnpipeCommand {
     private final ConsolePipe plugin = ConsolePipe.getPlugin();
@@ -23,12 +21,12 @@ public class UnpipeCommand {
 
     public LiteralCommandNode<CommandSourceStack> build() {
         return Commands.literal("unpipe")
-            .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND_PIPE))
+            .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND_UNPIPE))
             .executes(ctx -> handleCommand((Player) ctx.getSource().getSender()))
             .then(Commands.argument("player", ArgumentTypes.player())
-                .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND_PIPE_PLAYER))
+                .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND_UNPIPE_PLAYER))
                 .executes(ctx -> {
-                    Player targetPlayer = resolvePlayer(ctx);
+                    Player targetPlayer = resolveArgumentPlayer(ctx);
                     return handleCommand(targetPlayer, ctx.getSource().getSender());
                 })
             )
@@ -60,15 +58,5 @@ public class UnpipeCommand {
             .replace("%player%", targetPlayer.getName())
         ));
         return 1;
-    }
-
-    private Player resolvePlayer(CommandContext<CommandSourceStack> ctx) {
-        try {
-            return ctx.getArgument("player", PlayerSelectorArgumentResolver.class)
-                .resolve(ctx.getSource())
-                .getFirst();
-        } catch (CommandSyntaxException e) {
-            return null;
-        }
     }
 }

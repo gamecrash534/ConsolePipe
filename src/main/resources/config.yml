@@ -13,6 +13,8 @@ messages:
     unpiped-player: "<white>%player%<gray> has been unpiped!"
     player-already-piped: "<white>%player%<gray> is already piped!"
     player-already-unpiped: "<white>%player%<gray> is already unpiped!"
+    filter-set: "<white>A new filter has been set."
+    filter-set-player: "<white>%player%<gray>'s filter has been set."
 
     list: "<white>Players currently piped:<newline><red>%players%"
     no-list: "No players are currently piped!"

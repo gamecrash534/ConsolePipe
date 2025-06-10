@@ -35,3 +35,10 @@ permissions:
           consolepipe.command.reload:
             description: Reload the plugin
             default: op
+          consolepipe.command.filter:
+            description: Set a filter for the console output
+            default: op
+            children:
+              consolepipe.command.filter.other:
+                description: Set a filter for another player
+                default: op

@@ -10,8 +10,8 @@ import java.util.UUID;
 public class ConsolePlayer {
     private UUID uuid;
     private String name;
-    public String formatRegex = "";
-    public String denyRegex = "";
+    private String formatRegex = "";
+    private String denyRegex = "";
 
     public ConsolePlayer(UUID uuid, String name, String formatRegex, String denyRegex) {
         this.uuid = uuid;
@@ -29,7 +29,11 @@ public class ConsolePlayer {
     public Player getPlayer() {
         return Bukkit.getPlayer(uuid);
     }
-    public String getFormat() { return formatRegex; }
+    public String getFormatReg() { return formatRegex; }
+    public String getDenyReg() { return denyRegex; }
+
+    public void setFormatReg(String formatRegex) { this.formatRegex = formatRegex; }
+    public void setDenyReg(String denyRegex) { this.denyRegex = denyRegex; }
 
     @Override
     public boolean equals(Object obj) {
@@ -38,7 +42,6 @@ public class ConsolePlayer {
         ConsolePlayer that = (ConsolePlayer) obj;
         return uuid.equals(that.uuid) && name.equals(that.name);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(uuid, name);
