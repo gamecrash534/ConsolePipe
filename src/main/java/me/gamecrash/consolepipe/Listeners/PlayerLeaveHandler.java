@@ -14,7 +14,9 @@ public class PlayerLeaveHandler implements Listener {
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e) {
         ConsolePlayerManager cache = plugin.getManager();
-        if (cache.contains(e.getPlayer())) { cache.removePlayer(e.getPlayer()); }
-        plugin.getLogger().log(Level.INFO, "Player " + e.getPlayer().getName() + " left the console pipe");
+        if (cache.contains(e.getPlayer())) {
+            cache.removePlayer(e.getPlayer());
+            plugin.getLogger().log(Level.INFO, "Player " + e.getPlayer().getName() + " left the console pipe");
+        }
     }
 }
