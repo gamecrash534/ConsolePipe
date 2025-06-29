@@ -9,6 +9,8 @@ import org.apache.logging.log4j.core.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Collections;
+
 public final class ConsolePipe extends JavaPlugin {
     private ConsolePlayerManager manager;
 
@@ -19,7 +21,7 @@ public final class ConsolePipe extends JavaPlugin {
         reload();
 
         getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, cmds -> {
-            cmds.registrar().register(new ConsolePipeCommand().build());
+            cmds.registrar().register(new ConsolePipeCommand().build(), "consolepipe", Collections.singletonList("cp"));
         });
         Bukkit.getPluginManager().registerEvents(new PlayerLeaveHandler(), this);
 
