@@ -1,4 +1,4 @@
-package xyz.gamecrash.consolepipe.Commands;
+package xyz.gamecrash.consolepipe.Commands.ConsolePipe;
 
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
@@ -15,16 +15,16 @@ import static xyz.gamecrash.consolepipe.Utils.Permissions.*;
 import static xyz.gamecrash.consolepipe.Utils.Utils.checkSenderIsPlayer;
 import static xyz.gamecrash.consolepipe.Utils.Utils.resolveArgumentPlayer;
 
-public class PipeCommand {
+public class UnpipeCommand {
     private final ConsolePipe plugin = ConsolePipe.getPlugin();
     private final ConsolePlayerManager manager = plugin.getManager();
 
     public LiteralCommandNode<CommandSourceStack> build() {
-        return Commands.literal("pipe")
-            .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND_PIPE))
+        return Commands.literal("unpipe")
+            .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND_UNPIPE))
             .executes(ctx -> handleCommand(ctx.getSource().getSender()))
             .then(Commands.argument("player", ArgumentTypes.player())
-                .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND_PIPE_PLAYER))
+                .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND_UNPIPE_PLAYER))
                 .executes(ctx -> {
                     Player targetPlayer = resolveArgumentPlayer(ctx);
                     return handleCommand(targetPlayer, ctx.getSource().getSender());
@@ -38,23 +38,23 @@ public class PipeCommand {
             player.sendMessage(message(returnConfig(MESSAGE_NO_PLAYER)));
             return 1;
         }
-        if (manager.contains((Player) player)) {
-            player.sendMessage(message(returnConfig(MESSAGE_ALREADY_PIPED)));
+        if (!manager.contains((Player) player)) {
+            player.sendMessage(message(returnConfig(MESSAGE_ALREADY_UNPIPED)));
             return 1;
         }
-        manager.addPlayer((Player) player);
-        player.sendMessage(message(returnConfig(MESSAGE_PIPED)));
+        manager.removePlayer((Player) player);
+        player.sendMessage(message(returnConfig(MESSAGE_UNPIPED)));
         return 1;
     }
     private int handleCommand(Player targetPlayer, CommandSender sender) {
-        if (manager.contains(targetPlayer)) {
-            sender.sendMessage(message(returnConfig(MESSAGE_PLAYER_ALREADY_PIPED)
+        if (!manager.contains(targetPlayer)) {
+            sender.sendMessage(message(returnConfig(MESSAGE_PLAYER_ALREADY_UNPIPED)
                 .replace("%player%", targetPlayer.getName())
             ));
             return 1;
         }
-        manager.addPlayer(targetPlayer);
-        sender.sendMessage(message(returnConfig(MESSAGE_PIPED_PLAYER)
+        manager.removePlayer(targetPlayer);
+        sender.sendMessage(message(returnConfig(MESSAGE_UNPIPED_PLAYER)
             .replace("%player%", targetPlayer.getName())
         ));
         return 1;

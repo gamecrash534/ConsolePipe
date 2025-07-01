@@ -1,4 +1,4 @@
-package xyz.gamecrash.consolepipe.Commands;
+package xyz.gamecrash.consolepipe.Commands.ConsolePipe;
 
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;

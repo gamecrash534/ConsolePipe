@@ -4,6 +4,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
+import xyz.gamecrash.consolepipe.Commands.ConsolePipe.*;
 
 import static xyz.gamecrash.consolepipe.Utils.MessageUtils.*;
 import static xyz.gamecrash.consolepipe.Utils.Permissions.*;
