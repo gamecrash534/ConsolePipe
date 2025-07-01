@@ -1,4 +1,4 @@
-package xyz.gamecrash.consolepipe.Commands;
+package xyz.gamecrash.consolepipe.commands.consolepipe;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
@@ -6,20 +6,20 @@ import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
-import xyz.gamecrash.consolepipe.Console.ConsolePlayer;
-import xyz.gamecrash.consolepipe.Console.ConsolePlayerManager;
+import xyz.gamecrash.consolepipe.console.ConsolePlayer;
+import xyz.gamecrash.consolepipe.console.ConsolePlayerManager;
 import xyz.gamecrash.consolepipe.ConsolePipe;
 import org.bukkit.entity.Player;
 
-import static xyz.gamecrash.consolepipe.Utils.MessageUtils.*;
-import static xyz.gamecrash.consolepipe.Utils.Permissions.*;
-import static xyz.gamecrash.consolepipe.Utils.Utils.checkSenderIsPlayer;
-import static xyz.gamecrash.consolepipe.Utils.Utils.resolveArgumentPlayer;
-import static xyz.gamecrash.consolepipe.Utils.Messages.*;
+import static xyz.gamecrash.consolepipe.utils.MessageUtils.*;
+import static xyz.gamecrash.consolepipe.config.Permissions.*;
+import static xyz.gamecrash.consolepipe.utils.Utils.checkSenderIsPlayer;
+import static xyz.gamecrash.consolepipe.utils.Utils.resolveArgumentPlayer;
+import static xyz.gamecrash.consolepipe.config.Messages.*;
 
 public class FilterCommand {
     private final ConsolePipe plugin = ConsolePipe.getPlugin();
-    private final ConsolePlayerManager manager = plugin.getManager();
+    private final ConsolePlayerManager manager = plugin.getConsolePlayerManager();
 
     public LiteralCommandNode<CommandSourceStack> build() {
         return Commands.literal("filter")
@@ -38,28 +38,28 @@ public class FilterCommand {
 
     private int handleCommand(CommandContext<CommandSourceStack> ctx ) {
         if (!checkPlayer((Player) ctx.getSource().getSender())) {
-            ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_NOT_REGISTERED)));
+            ctx.getSource().getSender().sendMessage(message(returnConfig(ERROR_NOT_REGISTERED)));
             return 1;
         }
         if (!checkSenderIsPlayer(ctx.getSource().getSender())) {
-            ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_NO_PLAYER)));
+            ctx.getSource().getSender().sendMessage(message(returnConfig(ERROR_NO_PLAYER)));
             return 1;
         }
         ConsolePlayer player = manager.getPlayer((Player) ctx.getSource().getSender());
         String regex = StringArgumentType.getString(ctx, "regex");
         player.setDenyReg(regex);
-        ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_FILTER_SET)));
+        ctx.getSource().getSender().sendMessage(message(returnConfig(PIPE_FILTER_SET)));
         return 1;
     }
     private int handleCommand(Player targetPlayer, CommandContext<CommandSourceStack> ctx) {
         if (!checkPlayer(targetPlayer))  {
-            ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_NOT_REGISTERED)));
+            ctx.getSource().getSender().sendMessage(message(returnConfig(ERROR_NOT_REGISTERED)));
             return 1;
         }
         ConsolePlayer player = manager.getPlayer(targetPlayer);
         String regex = StringArgumentType.getString(ctx, "player_reg");
         player.setDenyReg(regex);
-        ctx.getSource().getSender().sendMessage(message(returnConfig(MESSAGE_FILTER_SET_OTHER)));
+        ctx.getSource().getSender().sendMessage(message(returnConfig(PIPE_FILTER_SET_PLAYER)));
         return 1;
     }
 

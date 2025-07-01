@@ -1,6 +1,6 @@
-package xyz.gamecrash.consolepipe.Listeners;
+package xyz.gamecrash.consolepipe.listeners;
 
-import xyz.gamecrash.consolepipe.Console.ConsolePlayerManager;
+import xyz.gamecrash.consolepipe.console.ConsolePlayerManager;
 import xyz.gamecrash.consolepipe.ConsolePipe;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,7 +13,7 @@ public class PlayerLeaveHandler implements Listener {
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e) {
-        ConsolePlayerManager cache = plugin.getManager();
+        ConsolePlayerManager cache = plugin.getConsolePlayerManager();
         if (cache.contains(e.getPlayer())) {
             cache.removePlayer(e.getPlayer());
             plugin.getLogger().log(Level.INFO, "Player " + e.getPlayer().getName() + " left the console pipe");

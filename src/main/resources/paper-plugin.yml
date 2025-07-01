@@ -7,38 +7,49 @@ load: STARTUP
 authors: [ game.crash ]
 description: A plugin to pipe the console outputs to a player
 permissions:
-  consolepipe:
-    description: Base Command
-    default: true
-    children:
-      consolepipe.command:
-        description: Base Command
-        default: op
-        children:
-          consolepipe.command.pipe:
-            description: Pipe the console output to a player
-            default: op
-            children:
-              consolepipe.command.pipe.other:
-                description: Pipe the console output to another player
-                default: op
-          consolepipe.command.unpipe:
-            description: Unpipe the console output from a player
-            default: op
-            children:
-              consolepipe.command.unpipe.other:
-                description: Unpipe the console output from another player
-                default: op
-          consolepipe.command.list:
-            description: List all players that are piped to the console
-            default: op
-          consolepipe.command.reload:
-            description: Reload the plugin
-            default: op
-          consolepipe.command.filter:
-            description: Set a filter for the console output
-            default: op
-            children:
-              consolepipe.command.filter.other:
-                description: Set a filter for another player
-                default: op
+    consolepipe.command:
+      description: Base Command
+      default: op
+    consolepipe.command.pipe:
+      description: Pipe the console output to a player
+      default: op
+      children:
+        consolepipe.command.pipe.other: true
+    consolepipe.command.unpipe:
+      description: Unpipe the console output from a player
+      default: op
+      children:
+        consolepipe.command.unpipe.other: true
+    consolepipe.command.list:
+      description: List all piped players
+      default: op
+    consolepipe.command.reload:
+      description: Reload the plugin configuration
+      default: op
+    consolepipe.command.filter:
+      description: Set a filter for the console output
+      default: op
+      children:
+        consolepipe.command.filter.other: true
+
+    consolepipe.command.logs:
+      description: View the console logs
+      default: op
+    consolepipe.command.logs.info:
+      description: View info about the selected log
+      default: op
+    consolepipe.command.logs.line:
+      description: View a specific line of the selected log
+      default: op
+    consolepipe.command.logs.list:
+      description: List all available logs
+      default: op
+    consolepipe.command.logs.search:
+      description: Search the selected log for a regex
+      default: op
+    consolepipe.command.logs.select:
+      description: Select a log to view
+      default: op
+    consolepipe.command.logs.upload:
+      description: Upload the selected log to a paste service
+      default: op

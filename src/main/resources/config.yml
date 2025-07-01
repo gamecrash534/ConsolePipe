@@ -1,22 +1,43 @@
 prefix: "<dark_gray>[<yellow>Console<white>Pipe<dark_gray>]<white>: "
-prefixEnabled: true
-pipeFormat: "<dark_gray>[<gray>%timestamp%<dark_gray>] [<gold>%sender%<dark_gray>]<gray>:<newline><white>%message%"
+pipe-format: "<dark_gray>[<gray>%timestamp%<dark_gray>] [<gold>%sender%<dark_gray>]<gray>:<newline><white>%message%"
+
+prefix-enabled: true
+upload-enabled: false
+
+# This supports pastes.dev only at the moment.
+upload-url: "https://api.pastes.dev/post"
+base-url: "https://pastes.dev/"
 
 messages:
-    no-permission: "You do not have permission to use this command."
-    piped: "You have been piped!"
-    unpiped: "You have been unpiped!"
-    piped-player: "<white>%player%<gray> has been piped!"
-    unpiped-player: "<white>%player%<gray> has been unpiped!"
-    filter-set: "<white>A new filter has been set."
-    filter-set-player: "<white>%player%<gray>'s filter has been set."
+    help:
+        usage: ""
+        log-select: "<white>Usage: <gray>/consolepipe logs select [log]"
+    errors:
+        no-permission: "You do not have permission to use this command."
+        no-player: "You must be a player to use this command."
+        no-list: "No players are currently piped!"
+        not-registered: "<red>%player%<gray> is not registered!"
+        log-not-found: "<red>Log <gray>%log%<red> not found!"
+        no-log-selected: "<red>No log selected! Use <gray>/consolepipe logs select <log></gray>."
+        log-upload-failed: "<red>Failed to upload log! Error: <red>%error%."
 
-    already-piped: "You are already piped!"
-    already-unpiped: "You are already unpiped!"
-    player-already-piped: "<white>%player%<gray> is already piped!"
-    player-already-unpiped: "<white>%player%<gray> is already unpiped!"
-    no-player: "You must be a player to use this command."
-    list: "<white>Players currently piped:<newline><red>%players%"
-    no-list: "No players are currently piped!"
-    not-registered: "<red>%player%<gray> is not registered!"
+    pipe:
+        piped: "You have been piped!"
+        unpiped: "You have been unpiped!"
+        piped-player: "<white>%player%<gray> has been piped!"
+        unpiped-player: "<white>%player%<gray> has been unpiped!"
+        filter-set: "<white>A new filter has been set."
+        filter-set-player: "<white>%player%<gray>'s filter has been set."
+
+        already-piped: "You are already piped!"
+        already-unpiped: "You are already unpiped!"
+        player-already-piped: "<white>%player%<gray> is already piped!"
+        player-already-unpiped: "<white>%player%<gray> is already unpiped!"
+        list: "<white>Players currently piped:<newline><red>%players%"
+
+    logs:
+        selected: "<white>Selected log: <gray>%log%"
+        uploaded: |
+            <white>Log <gray>%log%<white> has been uploaded!<newline><white><click:open_url:%link%><hover:show_text:"Click to open in the browser!">Link: <gray>%link%</click>
+
     reload: "<red>Reloaded ConsolePipe!"
