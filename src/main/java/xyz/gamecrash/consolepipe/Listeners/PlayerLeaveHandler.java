@@ -1,7 +1,7 @@
-package me.gamecrash.consolepipe.Listeners;
+package xyz.gamecrash.consolepipe.Listeners;
 
-import me.gamecrash.consolepipe.Console.ConsolePlayerManager;
-import me.gamecrash.consolepipe.ConsolePipe;
+import xyz.gamecrash.consolepipe.Console.ConsolePlayerManager;
+import xyz.gamecrash.consolepipe.ConsolePipe;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;

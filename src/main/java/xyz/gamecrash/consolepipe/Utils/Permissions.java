@@ -1,4 +1,4 @@
-package me.gamecrash.consolepipe.Utils;
+package xyz.gamecrash.consolepipe.Utils;
 
 public class Permissions {
     public static final String PERMISSION_BASE = "consolepipe";

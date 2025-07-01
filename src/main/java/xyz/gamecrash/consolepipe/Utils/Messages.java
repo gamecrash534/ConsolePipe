@@ -1,4 +1,4 @@
-package me.gamecrash.consolepipe.Utils;
+package xyz.gamecrash.consolepipe.Utils;
 
 public class Messages {
     public static final String MESSAGE_PREFIX = "prefix";

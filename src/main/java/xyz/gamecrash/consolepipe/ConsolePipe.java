@@ -1,9 +1,9 @@
-package me.gamecrash.consolepipe;
+package xyz.gamecrash.consolepipe;
 
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
-import me.gamecrash.consolepipe.Commands.ConsolePipeCommand;
-import me.gamecrash.consolepipe.Console.ConsolePlayerManager;
-import me.gamecrash.consolepipe.Listeners.PlayerLeaveHandler;
+import xyz.gamecrash.consolepipe.Commands.ConsolePipeCommand;
+import xyz.gamecrash.consolepipe.Console.ConsolePlayerManager;
+import xyz.gamecrash.consolepipe.Listeners.PlayerLeaveHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.bukkit.Bukkit;

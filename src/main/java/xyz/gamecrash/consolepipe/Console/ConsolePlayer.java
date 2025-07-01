@@ -1,4 +1,4 @@
-package me.gamecrash.consolepipe.Console;
+package xyz.gamecrash.consolepipe.Console;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

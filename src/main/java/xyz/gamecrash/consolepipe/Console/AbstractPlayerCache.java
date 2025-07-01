@@ -1,4 +1,4 @@
-package me.gamecrash.consolepipe.Console;
+package xyz.gamecrash.consolepipe.Console;
 
 import org.apache.logging.log4j.core.filter.AbstractFilter;
 import org.bukkit.entity.Player;

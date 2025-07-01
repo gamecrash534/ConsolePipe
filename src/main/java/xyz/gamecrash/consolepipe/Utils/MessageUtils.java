@@ -1,12 +1,12 @@
-package me.gamecrash.consolepipe.Utils;
+package xyz.gamecrash.consolepipe.Utils;
 
-import me.gamecrash.consolepipe.ConsolePipe;
+import xyz.gamecrash.consolepipe.ConsolePipe;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 
 import java.time.LocalTime;
 
-import static me.gamecrash.consolepipe.Utils.Messages.*;
+import static xyz.gamecrash.consolepipe.Utils.Messages.*;
 
 public class MessageUtils {
     private static final ConsolePipe plugin = ConsolePipe.getPlugin();

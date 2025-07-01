@@ -1,19 +1,19 @@
-package me.gamecrash.consolepipe.Commands;
+package xyz.gamecrash.consolepipe.Commands;
 
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
-import me.gamecrash.consolepipe.Console.ConsolePlayerManager;
-import me.gamecrash.consolepipe.ConsolePipe;
+import xyz.gamecrash.consolepipe.Console.ConsolePlayerManager;
+import xyz.gamecrash.consolepipe.ConsolePipe;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static me.gamecrash.consolepipe.Utils.MessageUtils.*;
-import static me.gamecrash.consolepipe.Utils.Messages.*;
-import static me.gamecrash.consolepipe.Utils.Permissions.*;
-import static me.gamecrash.consolepipe.Utils.Utils.checkSenderIsPlayer;
-import static me.gamecrash.consolepipe.Utils.Utils.resolveArgumentPlayer;
+import static xyz.gamecrash.consolepipe.Utils.MessageUtils.*;
+import static xyz.gamecrash.consolepipe.Utils.Messages.*;
+import static xyz.gamecrash.consolepipe.Utils.Permissions.*;
+import static xyz.gamecrash.consolepipe.Utils.Utils.checkSenderIsPlayer;
+import static xyz.gamecrash.consolepipe.Utils.Utils.resolveArgumentPlayer;
 
 public class UnpipeCommand {
     private final ConsolePipe plugin = ConsolePipe.getPlugin();

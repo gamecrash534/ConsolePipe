@@ -1,13 +1,13 @@
-package me.gamecrash.consolepipe.Commands;
+package xyz.gamecrash.consolepipe.Commands;
 
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
-import me.gamecrash.consolepipe.ConsolePipe;
+import xyz.gamecrash.consolepipe.ConsolePipe;
 
-import static me.gamecrash.consolepipe.Utils.MessageUtils.*;
-import static me.gamecrash.consolepipe.Utils.Messages.MESSAGE_RELOAD;
-import static me.gamecrash.consolepipe.Utils.Permissions.PERMISSION_COMMAND_RELOAD;
+import static xyz.gamecrash.consolepipe.Utils.MessageUtils.*;
+import static xyz.gamecrash.consolepipe.Utils.Messages.MESSAGE_RELOAD;
+import static xyz.gamecrash.consolepipe.Utils.Permissions.PERMISSION_COMMAND_RELOAD;
 
 public class ReloadCommand {
     private final ConsolePipe plugin = ConsolePipe.getPlugin();
