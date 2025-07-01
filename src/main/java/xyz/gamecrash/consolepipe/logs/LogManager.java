@@ -19,7 +19,7 @@ public class LogManager {
     public void setPlayerLog(UUID playerId, Log log) {
         selectedLogs.put(playerId, log);
     }
-    public Log getPlayerLog(UUID playerId) {
+    public @Nullable Log getPlayerLog(UUID playerId) {
         return selectedLogs.get(playerId);
     }
 

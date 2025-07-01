@@ -4,7 +4,9 @@ pipe-format: "<dark_gray>[<gray>%timestamp%<dark_gray>] [<gold>%sender%<dark_gra
 prefix-enabled: true
 upload-enabled: false
 
+# This supports pastes.dev only at the moment.
 upload-url: "https://api.pastes.dev/post"
+base-url: "https://pastes.dev/"
 
 messages:
     help:
@@ -16,6 +18,8 @@ messages:
         no-list: "No players are currently piped!"
         not-registered: "<red>%player%<gray> is not registered!"
         log-not-found: "<red>Log <gray>%log%<red> not found!"
+        no-log-selected: "<red>No log selected! Use <gray>/consolepipe logs select <log></gray>."
+        log-upload-failed: "<red>Failed to upload log! Error: <red>%error%."
 
     pipe:
         piped: "You have been piped!"
@@ -33,5 +37,7 @@ messages:
 
     logs:
         selected: "<white>Selected log: <gray>%log%"
+        uploaded: |
+            <white>Log <gray>%log%<white> has been uploaded!<newline><white><click:open_url:%link%><hover:show_text:"Click to open in the browser!">Link: <gray>%link%</click>
 
     reload: "<red>Reloaded ConsolePipe!"

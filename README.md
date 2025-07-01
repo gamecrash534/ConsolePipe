@@ -29,4 +29,5 @@ Planned:
   - `info` : Shows info about the selected log
   - `line` `<line>` : Prints a specific line from the selected log
   - `upload` : Uploads the selected log to a pastebin service
+    - `section <startLine> <endLine>` : Uploads a specific section of the log
   - `search` : Searches the log with the given regex and prints the results
