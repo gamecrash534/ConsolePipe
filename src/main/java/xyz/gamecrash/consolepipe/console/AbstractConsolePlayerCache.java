@@ -1,4 +1,4 @@
-package xyz.gamecrash.consolepipe.Console;
+package xyz.gamecrash.consolepipe.console;
 
 import org.apache.logging.log4j.core.filter.AbstractFilter;
 import org.bukkit.entity.Player;
@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractPlayerCache extends AbstractFilter {
+public abstract class AbstractConsolePlayerCache extends AbstractFilter {
     protected final List<ConsolePlayer> players = new ArrayList<>();
 
     public void clear() {

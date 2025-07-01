@@ -19,3 +19,14 @@ It is also pretty insecure, because you might accidentally view stuff that shoul
 - `filter`
   - `<filter regex>` : Filter the console output for yourself, to only see messages that don't match the regex
   - `[player] <filter regex>` : Filter the console output for a specific player
+
+Planned:
+- `logs`
+  - `list` : Lists all available logs
+    - `[type: log|error]` : Filter by type, either `log` or `error`
+    - `[nameReg]` : Filter by name, using a regex
+  - `select` `<log>` :  Selects a log to view
+  - `info` : Shows info about the selected log
+  - `line` `<line>` : Prints a specific line from the selected log
+  - `upload` : Uploads the selected log to a pastebin service
+  - `search` : Searches the log with the given regex and prints the results

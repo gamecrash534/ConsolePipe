@@ -1,13 +1,13 @@
-package xyz.gamecrash.consolepipe.Commands;
+package xyz.gamecrash.consolepipe.commands;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
-import xyz.gamecrash.consolepipe.Commands.ConsolePipe.*;
+import xyz.gamecrash.consolepipe.commands.consolepipe.*;
 
-import static xyz.gamecrash.consolepipe.Utils.MessageUtils.*;
-import static xyz.gamecrash.consolepipe.Utils.Permissions.*;
+import static xyz.gamecrash.consolepipe.utils.MessageUtils.*;
+import static xyz.gamecrash.consolepipe.config.Permissions.*;
 
 public class ConsolePipeCommand {
     public LiteralCommandNode<CommandSourceStack> build() {
@@ -22,9 +22,9 @@ public class ConsolePipeCommand {
             .then(new ReloadCommand().build())
             .then(new ListCommand().build())
             .then(new FilterCommand().build())
+            .then(new LogsCommand().build())
             ;
 
         return builder.build();
     }
-
 }
