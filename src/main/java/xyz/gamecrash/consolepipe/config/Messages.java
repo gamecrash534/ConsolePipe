@@ -21,6 +21,8 @@ public class Messages {
     public static final String ERROR_LOG_NOT_FOUND = ERRORS + ".log-not-found";
     public static final String ERROR_NO_LOG_SELECTED = ERRORS + ".no-log-selected";
     public static final String ERROR_LOG_UPLOAD_FAILED = ERRORS + ".log-upload-failed";
+    public static final String ERROR_LOG_READ_FAILED = ERRORS + ".log-read-failed";
+    public static final String ERROR_LOG_SEARCH_NO_RESULTS = ERRORS + ".log-search-no-results";
 
     public static final String PIPE_PIPED = PIPE + ".piped";
     public static final String PIPE_UNPIPED = PIPE + ".unpiped";
@@ -36,4 +38,6 @@ public class Messages {
 
     public static final String LOGS_SELECTED = LOGS + ".selected";
     public static final String LOGS_UPLOADED = LOGS + ".uploaded";
+    public static final String LOGS_LIST = LOGS + ".list";
+    public static final String LOGS_SEARCH_RESULT = LOGS + ".search-result";
 }

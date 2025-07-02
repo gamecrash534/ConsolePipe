@@ -34,7 +34,7 @@ public class UploadCommand {
 
         if (uploadResult.first()) {
             MessageUtils.sendMessage(ctx.getSource().getSender(), MessageUtils.returnConfig(Messages.LOGS_UPLOADED)
-                .replace("%log", log.getName())
+                .replace("%log%", log.getName())
                 .replace("%link%",
                     plugin.getConfig().getString(ConfigEntries.BASE_URL) + uploadResult.second().replaceAll(".*\"key\"\\s*:\\s*\"([^\"]+)\".*", "$1")
                 )

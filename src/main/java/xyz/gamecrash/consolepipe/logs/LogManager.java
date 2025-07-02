@@ -72,7 +72,7 @@ public class LogManager {
     private @Nullable List<Log> getLogFiles(String directory) {
         try (Stream<Path> paths = Files.walk(Paths.get(directory))) {
             return paths.filter(Files::isRegularFile)
-                .filter(path -> path.toString().endsWith(".log") || path.toString().endsWith(".log.gz"))
+                .filter(path -> path.toString().endsWith(".log") || path.toString().endsWith(".log.gz") || path.toString().endsWith(".txt"))
                 .map(path -> new Log(path.getFileName().toString(), path.toString()))
                 .toList();
         } catch (Exception e) {

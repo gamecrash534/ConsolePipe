@@ -20,6 +20,8 @@ messages:
         log-not-found: "<red>Log <gray>%log%<red> not found!"
         no-log-selected: "<red>No log selected! Use <gray>/consolepipe logs select <log></gray>."
         log-upload-failed: "<red>Failed to upload log! Error: <red>%error%."
+        log-read-failed: "<red>Failed to read log!"
+        log-search-no-results: "<red>No results found for given RegEx!"
 
     pipe:
         piped: "You have been piped!"
@@ -36,7 +38,17 @@ messages:
         list: "<white>Players currently piped:<newline><red>%players%"
 
     logs:
+        list:
+            header: |
+                --------------------- %prefix% ---------------------
+                Available Pages: <gray>%pages%
+            item: "<white>%log% <gray>(<white>%size%<gray> bytes)"
+            no-logs: "<red>No logs available!"
+            footer: |
+                <newline><red>[Forward] <white> | <red>[Back]
+                -----------------------------------------------------
         selected: "<white>Selected log: <gray>%log%"
+        search-result: "<white>Search results in log %log%: <gray>%results%"
         uploaded: |
             <white>Log <gray>%log%<white> has been uploaded!<newline><white><click:open_url:%link%><hover:show_text:"Click to open in the browser!">Link: <gray>%link%</click>
 
