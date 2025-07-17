@@ -1,5 +1,6 @@
 package xyz.gamecrash.consolepipe.commands.logs;
 
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
@@ -21,6 +22,11 @@ public class UploadCommand {
     public LiteralCommandNode<CommandSourceStack> build() {
         return Commands.literal("upload")
             .executes(this::execute)
+            .then(Commands.argument("startLine", IntegerArgumentType.integer(0))
+                .then(Commands.argument("endLine", IntegerArgumentType.integer(0))
+                    .executes(this::executeArgs)
+                )
+            )
             .build();
     }
 
@@ -31,6 +37,31 @@ public class UploadCommand {
             return 1;
         }
         Pair<Boolean, String> uploadResult = LogUploader.uploadLog(log);
+
+        if (uploadResult.first()) {
+            MessageUtils.sendMessage(ctx.getSource().getSender(), MessageUtils.returnConfig(Messages.LOGS_UPLOADED)
+                .replace("%log%", log.getName())
+                .replace("%link%",
+                    plugin.getConfig().getString(ConfigEntries.BASE_URL) + uploadResult.second().replaceAll(".*\"key\"\\s*:\\s*\"([^\"]+)\".*", "$1")
+                )
+            );
+        } else {
+            MessageUtils.sendMessage(ctx.getSource().getSender(), MessageUtils.returnConfig(Messages.ERROR_LOG_UPLOAD_FAILED)
+                .replace("%error%", uploadResult.second())
+            );
+        }
+        return 1;
+    }
+    private int executeArgs(CommandContext<CommandSourceStack> ctx) {
+        int startLine = IntegerArgumentType.getInteger(ctx, "startLine");
+        int endLine = IntegerArgumentType.getInteger(ctx, "endLine");
+
+        Log log = logManager.getPlayerLog(Utils.returnUUID(ctx.getSource().getSender()));
+        if (log == null) {
+            MessageUtils.sendConfigMessage(ctx.getSource().getSender(), Messages.ERROR_NO_LOG_SELECTED);
+            return 1;
+        }
+        Pair<Boolean, String> uploadResult = LogUploader.uploadLog(log, startLine, endLine);
 
         if (uploadResult.first()) {
             MessageUtils.sendMessage(ctx.getSource().getSender(), MessageUtils.returnConfig(Messages.LOGS_UPLOADED)
