@@ -40,4 +40,5 @@ public class Messages {
     public static final String LOGS_UPLOADED = LOGS + ".uploaded";
     public static final String LOGS_LIST = LOGS + ".list";
     public static final String LOGS_SEARCH_RESULT = LOGS + ".search-result";
+    public static final String LOGS_INFO = LOGS + ".info";
 }

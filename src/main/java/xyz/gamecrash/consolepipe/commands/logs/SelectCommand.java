@@ -24,7 +24,7 @@ public class SelectCommand {
         return Commands.literal("select")
             .requires(source -> source.getSender().hasPermission(Permissions.PERMISSION_COMMAND_LOGS_SELECT))
             .executes(this::argless)
-            .then(Commands.argument("log-name", StringArgumentType.greedyString())
+            .then(Commands.argument("logName", StringArgumentType.greedyString())
                 .executes(this::execute)
                 .suggests(this::suggestLogs)
             )

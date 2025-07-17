@@ -51,5 +51,9 @@ messages:
         search-result: "<white>Search results in log %log%: <gray>%results%"
         uploaded: |
             <white>Log <gray>%log%<white> has been uploaded!<newline><white><click:open_url:%link%><hover:show_text:"Click to open in the browser!">Link: <gray>%link%</click>
+        info: |
+            <red>Selected Log Name: <white>%name%
+            <red>Log File Size: <white>%size%
+            <red>Last Modified: <white>%modified%
 
     reload: "<red>Reloaded ConsolePipe!"

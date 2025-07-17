@@ -7,11 +7,13 @@ import io.papermc.paper.command.brigadier.Commands;
 import xyz.gamecrash.consolepipe.ConsolePipe;
 import xyz.gamecrash.consolepipe.config.Messages;
 import xyz.gamecrash.consolepipe.config.Permissions;
+import xyz.gamecrash.consolepipe.logs.Log;
 import xyz.gamecrash.consolepipe.logs.LogManager;
 import xyz.gamecrash.consolepipe.utils.MessageBuilder;
 import xyz.gamecrash.consolepipe.utils.MessageUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ListCommand {
     private final LogManager logManager = ConsolePipe.getPlugin().getLogManager();
@@ -30,5 +32,13 @@ public class ListCommand {
             .toString()
         );
         return 1;
+    }
+
+    private List<String> listLogs(String type, String nameRegex) {
+        List<String> logs = logManager.getLogNames();
+        return logs.stream()
+            .filter(log -> type == null || log.contains("type"))
+            .filter(log -> nameRegex == null || log.matches(nameRegex))
+            .collect(Collectors.toList());
     }
 }

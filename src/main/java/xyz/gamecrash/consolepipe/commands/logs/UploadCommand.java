@@ -38,19 +38,7 @@ public class UploadCommand {
         }
         Pair<Boolean, String> uploadResult = LogUploader.uploadLog(log);
 
-        if (uploadResult.first()) {
-            MessageUtils.sendMessage(ctx.getSource().getSender(), MessageUtils.returnConfig(Messages.LOGS_UPLOADED)
-                .replace("%log%", log.getName())
-                .replace("%link%",
-                    plugin.getConfig().getString(ConfigEntries.BASE_URL) + uploadResult.second().replaceAll(".*\"key\"\\s*:\\s*\"([^\"]+)\".*", "$1")
-                )
-            );
-        } else {
-            MessageUtils.sendMessage(ctx.getSource().getSender(), MessageUtils.returnConfig(Messages.ERROR_LOG_UPLOAD_FAILED)
-                .replace("%error%", uploadResult.second())
-            );
-        }
-        return 1;
+        return sendMsg(ctx, log, uploadResult);
     }
     private int executeArgs(CommandContext<CommandSourceStack> ctx) {
         int startLine = IntegerArgumentType.getInteger(ctx, "startLine");
@@ -63,6 +51,10 @@ public class UploadCommand {
         }
         Pair<Boolean, String> uploadResult = LogUploader.uploadLog(log, startLine, endLine);
 
+        return sendMsg(ctx, log, uploadResult);
+    }
+
+    private int sendMsg(CommandContext<CommandSourceStack> ctx, Log log, Pair<Boolean, String> uploadResult) {
         if (uploadResult.first()) {
             MessageUtils.sendMessage(ctx.getSource().getSender(), MessageUtils.returnConfig(Messages.LOGS_UPLOADED)
                 .replace("%log%", log.getName())

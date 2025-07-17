@@ -20,6 +20,8 @@ public class LogsCommand {
             .then(new SelectCommand().build())
             .then(new UploadCommand().build())
             .then(new SearchCommand().build())
+            .then(new InfoCommand().build())
+            .then(new LineCommand().build())
             .build();
     }
 }
