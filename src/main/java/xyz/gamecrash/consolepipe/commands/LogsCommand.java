@@ -13,7 +13,7 @@ public class LogsCommand {
         return Commands.literal("logs")
             .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND))
             .executes(ctx -> {
-                ctx.getSource().getSender().sendMessage(message("<white>ConsolePipe v${project.version} by game.crash"));
+                ctx.getSource().getSender().sendMessage(message("<white>ConsolePipe v" + getClass().getPackage().getImplementationVersion() + " by game.crash"));
                 return 1;
             })
             .then(new ListCommand().build())

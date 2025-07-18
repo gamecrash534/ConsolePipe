@@ -14,7 +14,7 @@ public class ConsolePipeCommand {
         LiteralArgumentBuilder<CommandSourceStack> builder = Commands.literal("consolepipe")
             .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND))
             .executes(ctx -> {
-                ctx.getSource().getSender().sendMessage(message("<white>ConsolePipe v${project.version} by game.crash"));
+                ctx.getSource().getSender().sendMessage(message("<white>ConsolePipe v" + getClass().getPackage().getImplementationVersion() + " by game.crash"));
                 return 1;
             })
             .then(new PipeCommand().build())
