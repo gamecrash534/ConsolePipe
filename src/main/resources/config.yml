@@ -12,7 +12,15 @@ base-url: "https://pastes.dev/"
 
 messages:
     help:
-        usage: ""
+        usage: |
+            Welcome to ConsolePipe! Here are the commands you can use:
+            <white>/consolepipe pipe</white> - Pipe yourself to the console.
+            <white>/consolepipe unpipe</white> - Unpipe yourself from the console.
+            <white>/consolepipe list</white> - List all players currently piped.
+            <white>/consolepipe filter <filter></white> - Set a filter for your piped messages.
+            <white>/consolepipe logs</white> - View and manage console logs -> The full list of commands is currently only available on the github.
+        usage-logs: |
+            Currently not available :(
         log-select: "<white>Usage: <gray>/consolepipe logs select [log]"
     errors:
         no-permission: "You do not have permission to use this command."

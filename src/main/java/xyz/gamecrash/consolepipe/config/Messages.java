@@ -11,6 +11,8 @@ public class Messages {
     public static final String LOGS = BASE + ".logs";
 
     public static final String HELP_LOG_SELECTED = HELP + ".log-select";
+    public static final String HELP_USAGE = HELP + ".usage";
+    public static final String HELP_USAGE_LOGS = HELP + ".usage-logs";
 
     public static final String MESSAGE_RELOAD = "messages.reload";
 

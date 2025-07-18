@@ -5,6 +5,8 @@ import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
 import xyz.gamecrash.consolepipe.commands.consolepipe.*;
+import xyz.gamecrash.consolepipe.config.Messages;
+import xyz.gamecrash.consolepipe.utils.MessageUtils;
 
 import static xyz.gamecrash.consolepipe.utils.MessageUtils.*;
 import static xyz.gamecrash.consolepipe.config.Permissions.*;
@@ -14,7 +16,7 @@ public class ConsolePipeCommand {
         LiteralArgumentBuilder<CommandSourceStack> builder = Commands.literal("consolepipe")
             .requires(sender -> sender.getSender().hasPermission(PERMISSION_COMMAND))
             .executes(ctx -> {
-                ctx.getSource().getSender().sendMessage(message("<white>ConsolePipe v" + getClass().getPackage().getImplementationVersion() + " by game.crash"));
+                MessageUtils.sendConfigMessage(ctx.getSource().getSender(), Messages.HELP_USAGE);
                 return 1;
             })
             .then(new PipeCommand().build())
