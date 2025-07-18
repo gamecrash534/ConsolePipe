@@ -48,12 +48,14 @@ messages:
                 <newline><red>[Forward] <white> | <red>[Back]
                 -----------------------------------------------------
         selected: "<white>Selected log: <gray>%log%"
+        line: "<gray>Contents of line %line%: <white>%contents%"
         search-result: "<white>Search results in log %log%: <gray>%results%"
         uploaded: |
             <white>Log <gray>%log%<white> has been uploaded!<newline><white><click:open_url:%link%><hover:show_text:"Click to open in the browser!">Link: <gray>%link%</click>
         info: |
+            <gold>Log Information:
             <red>Selected Log Name: <white>%name%
-            <red>Log File Size: <white>%size%
+            <red>Log File Size: <white>%size% Bytes
             <red>Last Modified: <white>%modified%
 
     reload: "<red>Reloaded ConsolePipe!"
