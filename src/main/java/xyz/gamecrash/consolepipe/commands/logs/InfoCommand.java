@@ -26,6 +26,11 @@ public class InfoCommand {
 
     private int execute(CommandContext<CommandSourceStack> ctx) {
         Log log = logManager.getPlayerLog(Utils.returnUUID(ctx.getSource().getSender()));
+        if (log == null) {
+            MessageUtils.sendConfigMessage(ctx.getSource().getSender(), Messages.ERROR_NO_LOG_SELECTED);
+            return 1;
+        }
+
         MessageUtils.sendRaw(ctx.getSource().getSender(), MessageBuilder.fromConfig(Messages.LOGS_INFO)
             .prefix()
             .replace("name", log.getName())
