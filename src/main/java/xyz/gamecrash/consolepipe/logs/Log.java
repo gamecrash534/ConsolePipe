@@ -15,6 +15,16 @@ public class Log {
     public String getName() { return name; }
     public String getPath() { return path; }
 
+    public String getType() {
+        if (name.equals("latest.log") || name.endsWith(".gz")) {
+            return "log";
+        }
+        if (name.startsWith("crash-")) {
+            return "error";
+        }
+        return null;
+    }
+
     public boolean exists() { return new File(path).exists(); }
     public long getFileSize() {
         File file = new File(path);

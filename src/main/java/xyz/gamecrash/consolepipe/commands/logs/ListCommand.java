@@ -1,6 +1,7 @@
 package xyz.gamecrash.consolepipe.commands.logs;
 
 import com.mojang.brigadier.arguments.IntegerArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
@@ -14,6 +15,8 @@ import xyz.gamecrash.consolepipe.utils.MessageBuilder;
 import xyz.gamecrash.consolepipe.utils.MessageUtils;
 
 import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class ListCommand {
     private final LogManager logManager = ConsolePipe.getPlugin().getLogManager();
@@ -22,14 +25,55 @@ public class ListCommand {
     public LiteralCommandNode<CommandSourceStack> build() {
         return Commands.literal("list")
             .requires(source -> source.getSender().hasPermission(Permissions.PERMISSION_COMMAND_LOGS_LIST))
-            .executes(ctx -> execute(ctx, 1))
+            .executes(ctx -> execute(ctx, 1, null, null))
+            .then(Commands.literal("type")
+                .then(Commands.argument("type", StringArgumentType.word())
+                    .suggests((c, b) -> {
+                        b.suggest("log");
+                        b.suggest("error");
+                        return b.buildFuture();
+                    })
+                    .executes(ctx -> execute(ctx, 1, ctx.getArgument("type", String.class), null))
+                    .then(Commands.argument("page", IntegerArgumentType.integer(1))
+                        .executes(ctx -> execute(ctx, ctx.getArgument("page", Integer.class), ctx.getArgument("type", String.class), null))
+                    )
+                )
+            )
+            .then(Commands.literal("reg")
+                .then(Commands.argument("nameReg", StringArgumentType.string())
+                    .executes(ctx -> execute(ctx, 1, null, ctx.getArgument("nameReg", String.class)))
+                    .then(Commands.argument("page", IntegerArgumentType.integer(1))
+                        .executes(ctx -> execute(ctx, ctx.getArgument("page", Integer.class), null, ctx.getArgument("nameReg", String.class)))
+                    )
+                )
+            )
             .then(Commands.argument("page", IntegerArgumentType.integer(1))
-                .executes(ctx -> execute(ctx, IntegerArgumentType.getInteger(ctx, "page"))))
+                .executes(ctx -> execute(ctx, ctx.getArgument("page", Integer.class), null, null))
+            )
             .build();
     }
 
-    private int execute(CommandContext<CommandSourceStack> ctx, int page) {
+    private int execute(CommandContext<CommandSourceStack> ctx, int page, String type, String nameReg) {
         List<Log> logs = logManager.getLogs();
+
+        if (type != null) {
+            String typeLower = type.toLowerCase();
+            if (!typeLower.equals("log") && !typeLower.equals("error")) {
+                MessageUtils.sendRaw(ctx.getSource().getSender(), "§cUngültiger Typ! Nur 'log' oder 'error' sind erlaubt.");
+                return 0;
+            }
+            logs = logs.stream()
+                .filter(log -> typeLower.equals(log.getType()))
+                .collect(Collectors.toList());
+        }
+
+        if (nameReg != null) {
+            Pattern pattern = Pattern.compile(nameReg);
+            logs = logs.stream()
+                .filter(log -> pattern.matcher(log.getName()).find())
+                .collect(Collectors.toList());
+        }
+
         int totalPages = Math.max(1, (int) Math.ceil((double) logs.size() / itemsPerPage));
         page = Math.max(1, Math.min(page, totalPages));
 
