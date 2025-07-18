@@ -43,7 +43,7 @@ public class SearchCommand {
             if (result.isEmpty()) {
                 MessageUtils.sendConfigMessage(ctx.getSource().getSender(), Messages.ERROR_LOG_SEARCH_NO_RESULTS);
             } else {
-                MessageUtils.sendMessage(ctx.getSource().getSender(), MessageBuilder.fromConfig(Messages.LOGS_SEARCH_RESULT)
+                MessageUtils.sendRaw(ctx.getSource().getSender(), MessageBuilder.fromConfig(Messages.LOGS_SEARCH_RESULT)
                     .prefix()
                     .replace("log", log.getName())
                     .replace("results", String.join("<newline><newline>", result)

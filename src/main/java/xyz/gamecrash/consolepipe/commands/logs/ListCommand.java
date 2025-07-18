@@ -26,7 +26,7 @@ public class ListCommand {
     }
 
     private int execute(CommandContext<CommandSourceStack> ctx) {
-        MessageUtils.sendMessage(ctx.getSource().getSender(), MessageBuilder.fromConfig(Messages.LOGS_LIST)
+        MessageUtils.sendRaw(ctx.getSource().getSender(), MessageBuilder.fromConfig(Messages.LOGS_LIST)
             .prefix()
             .replace("%logs%", logManager.getLogNames() != null ? String.join("<white>,<newline>", logManager.getLogNames()) : "No logs found")
             .toString()

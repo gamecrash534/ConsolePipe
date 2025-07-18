@@ -36,7 +36,7 @@ public class SelectCommand {
         return 1;
     }
     private int execute(CommandContext<CommandSourceStack> ctx) {
-        String logName = StringArgumentType.getString(ctx, "log-name");
+        String logName = StringArgumentType.getString(ctx, "logName");
         Log log = logManager.getLog(logName);
         if (log == null) {
             MessageUtils.sendMessage(ctx.getSource().getSender(), MessageUtils.returnConfig(Messages.ERROR_LOG_NOT_FOUND).replace("%log%", logName));

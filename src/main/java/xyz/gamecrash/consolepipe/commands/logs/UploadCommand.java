@@ -56,7 +56,7 @@ public class UploadCommand {
 
     private int sendMsg(CommandContext<CommandSourceStack> ctx, Log log, Pair<Boolean, String> uploadResult) {
         if (uploadResult.first()) {
-            MessageUtils.sendMessage(ctx.getSource().getSender(), MessageUtils.returnConfig(Messages.LOGS_UPLOADED)
+            MessageUtils.sendRaw(ctx.getSource().getSender(), MessageUtils.returnConfig(Messages.LOGS_UPLOADED)
                 .replace("%log%", log.getName())
                 .replace("%link%",
                     plugin.getConfig().getString(ConfigEntries.BASE_URL) + uploadResult.second().replaceAll(".*\"key\"\\s*:\\s*\"([^\"]+)\".*", "$1")

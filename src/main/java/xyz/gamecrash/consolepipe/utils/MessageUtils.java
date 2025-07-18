@@ -35,6 +35,12 @@ public class MessageUtils {
         }
         sender.sendMessage(message(message));
     }
+    public static void sendRaw(CommandSender sender, String message) {
+        if (sender == null || message == null || message.isEmpty()) {
+            return;
+        }
+        sender.sendMessage(returnComponent(message));
+    }
     public static void sendConfigMessage(CommandSender sender, String path) {
         String message = returnConfig(path);
         sendMessage(sender, message);
