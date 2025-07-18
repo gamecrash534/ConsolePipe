@@ -7,6 +7,7 @@ import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
 import xyz.gamecrash.consolepipe.ConsolePipe;
+import xyz.gamecrash.consolepipe.config.ConfigEntries;
 import xyz.gamecrash.consolepipe.config.Messages;
 import xyz.gamecrash.consolepipe.config.Permissions;
 import xyz.gamecrash.consolepipe.logs.Log;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 
 public class ListCommand {
     private final LogManager logManager = ConsolePipe.getPlugin().getLogManager();
-    private final int itemsPerPage = ConsolePipe.getPlugin().getConfig().getInt("list-items-per-page", 10);
+    private final int itemsPerPage = ConsolePipe.getPlugin().getConfig().getInt(ConfigEntries.LOGS_LIST_ITEMS_PER_PAGE);
 
     public LiteralCommandNode<CommandSourceStack> build() {
         return Commands.literal("list")

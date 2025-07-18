@@ -13,7 +13,7 @@ base-url: "https://pastes.dev/"
 messages:
     help:
         usage: |
-            Welcome to ConsolePipe! Here are the commands you can use:
+            <gold>Welcome to ConsolePipe! Here are the commands you can use:<gray>
             <white>/consolepipe pipe</white> - Pipe yourself to the console.
             <white>/consolepipe unpipe</white> - Unpipe yourself from the console.
             <white>/consolepipe list</white> - List all players currently piped.
