@@ -42,4 +42,8 @@ public class Messages {
     public static final String LOGS_SEARCH_RESULT = LOGS + ".search-result";
     public static final String LOGS_INFO = LOGS + ".info";
     public static final String LOGS_LINE = LOGS + ".line";
+    public static final String LOGS_LIST_HEADER = LOGS_LIST + ".header";
+    public static final String LOGS_LIST_FOOTER = LOGS_LIST + ".footer";
+    public static final String LOGS_LIST_ITEM = LOGS_LIST + ".item";
+    public static final String LOGS_LIST_NO_LOGS = LOGS_LIST + ".no-logs";
 }

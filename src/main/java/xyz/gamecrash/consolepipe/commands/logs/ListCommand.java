@@ -1,5 +1,6 @@
 package xyz.gamecrash.consolepipe.commands.logs;
 
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
@@ -13,32 +14,48 @@ import xyz.gamecrash.consolepipe.utils.MessageBuilder;
 import xyz.gamecrash.consolepipe.utils.MessageUtils;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ListCommand {
     private final LogManager logManager = ConsolePipe.getPlugin().getLogManager();
+    private final int itemsPerPage = ConsolePipe.getPlugin().getConfig().getInt("list-items-per-page", 10);
 
     public LiteralCommandNode<CommandSourceStack> build() {
         return Commands.literal("list")
             .requires(source -> source.getSender().hasPermission(Permissions.PERMISSION_COMMAND_LOGS_LIST))
-            .executes(this::execute)
+            .executes(ctx -> execute(ctx, 1))
+            .then(Commands.argument("page", IntegerArgumentType.integer(1))
+                .executes(ctx -> execute(ctx, IntegerArgumentType.getInteger(ctx, "page"))))
             .build();
     }
 
-    private int execute(CommandContext<CommandSourceStack> ctx) {
-        MessageUtils.sendRaw(ctx.getSource().getSender(), MessageBuilder.fromConfig(Messages.LOGS_LIST)
-            .prefix()
-            .replace("%logs%", logManager.getLogNames() != null ? String.join("<white>,<newline>", logManager.getLogNames()) : "No logs found")
-            .toString()
-        );
-        return 1;
-    }
+    private int execute(CommandContext<CommandSourceStack> ctx, int page) {
+        List<Log> logs = logManager.getLogs();
+        int totalPages = Math.max(1, (int) Math.ceil((double) logs.size() / itemsPerPage));
+        page = Math.max(1, Math.min(page, totalPages));
 
-    private List<String> listLogs(String type, String nameRegex) {
-        List<String> logs = logManager.getLogNames();
-        return logs.stream()
-            .filter(log -> type == null || log.contains("type"))
-            .filter(log -> nameRegex == null || log.matches(nameRegex))
-            .collect(Collectors.toList());
+        MessageBuilder output = MessageBuilder.fromConfig(Messages.LOGS_LIST_HEADER)
+            .replaceConfig("prefix", Messages.MESSAGE_PREFIX)
+            .replace("page", String.valueOf(page))
+            .replace("pages", String.valueOf(totalPages));
+
+        if (logs.isEmpty()) {
+            output.append(MessageBuilder.fromConfig(Messages.LOGS_LIST_NO_LOGS));
+        } else {
+            int start = (page - 1) * itemsPerPage;
+            int end = Math.min(start + itemsPerPage, logs.size());
+            for (int i = start; i < end; i++) {
+                Log log = logs.get(i);
+                output.append(
+                    MessageBuilder.fromConfig(Messages.LOGS_LIST_ITEM)
+                        .append("<newline>")
+                        .replace("log", log.getName())
+                        .replace("size", String.valueOf(log.getFileSize()))
+                );
+            }
+        }
+
+        output.append(MessageBuilder.fromConfig(Messages.LOGS_LIST_FOOTER));
+        MessageUtils.sendRaw(ctx.getSource().getSender(), output.toString());
+        return 1;
     }
 }

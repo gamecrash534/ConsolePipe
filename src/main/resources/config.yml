@@ -4,6 +4,8 @@ pipe-format: "<dark_gray>[<gray>%timestamp%<dark_gray>] [<gold>%sender%<dark_gra
 prefix-enabled: true
 upload-enabled: false
 
+list-items-per-page: 10
+
 # This supports pastes.dev only at the moment.
 upload-url: "https://api.pastes.dev/post"
 base-url: "https://pastes.dev/"
@@ -40,13 +42,13 @@ messages:
     logs:
         list:
             header: |
-                --------------------- %prefix% ---------------------
-                Available Pages: <gray>%pages%
-            item: "<white>%log% <gray>(<white>%size%<gray> bytes)"
+                <dark_gray>------------------ %prefix% <dark_gray>------------------
+                <white>Click on a log to select it
+                Current Page: <gray>%page% / %pages%<newline>
+            item: "<hover:show_text:'Click to select log'><click:run_command:'/consolepipe logs select %log%'><white>%log%</click> <gray>(%size% bytes)"
             no-logs: "<red>No logs available!"
             footer: |
-                <newline><red>[Forward] <white> | <red>[Back]
-                -----------------------------------------------------
+                <newline><dark_gray>-------------------------------------------------
         selected: "<white>Selected log: <gray>%log%"
         line: "<gray>Contents of line %line%: <white>%contents%"
         search-result: "<white>Search results in log %log%: <gray>%results%"

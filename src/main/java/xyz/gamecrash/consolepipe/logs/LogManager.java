@@ -56,6 +56,9 @@ public class LogManager {
             .map(Log::getName)
             .toList();
     }
+    public List<Log> getLogs() {
+        return Collections.unmodifiableList(logs);
+    }
     public boolean exists(String logName) {
         return logs.stream().anyMatch(log -> log.getName().equalsIgnoreCase(logName));
     }

@@ -17,6 +17,10 @@ public class MessageBuilder {
         message += text;
         return this;
     }
+    public MessageBuilder append(MessageBuilder other) {
+        message += other.build();
+        return this;
+    }
     public MessageBuilder appendLine(String text) {
         message += text + "\n";
         return this;
@@ -28,6 +32,9 @@ public class MessageBuilder {
     public MessageBuilder replace(String placeholder, String value) {
         message = message.replace("%" + placeholder + "%", value);
         return this;
+    }
+    public MessageBuilder replaceConfig(String placeholder, String configKey) {
+        return replace(placeholder, MessageUtils.returnConfig(configKey));
     }
     public String build() {
         return message.toString();
