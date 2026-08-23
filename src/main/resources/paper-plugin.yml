@@ -1,0 +1,9 @@
+name: ConsolePipe
+version: '${version}'
+
+main: dev.gamecrash.consolepipe.ConsolePipe
+api-version: '26.2'
+load: STARTUP
+
+authors: [game.crash]
+website: gamecrash.dev
