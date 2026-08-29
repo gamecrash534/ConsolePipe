@@ -1,5 +1,3 @@
-import java.net.URI
-
 plugins {
     id("java-library")
     id("io.papermc.paperweight.userdev") version "2.0.0-beta.22"
@@ -14,6 +12,8 @@ repositories {
 
 dependencies {
     paperweight.paperDevBundle("26.2.build.+")
+    compileOnly("org.projectlombok:lombok:1.18.46")
+    annotationProcessor("org.projectlombok:lombok:1.18.46")
 }
 
 java {
@@ -22,9 +22,6 @@ java {
 
 tasks {
     runServer {
-        // Configure the Minecraft version for our task.
-        // This is the only required configuration besides applying the plugin.
-        // Your plugin's jar (or shadowJar if present) will be used automatically.
         minecraftVersion("26.2")
         jvmArgs("-Xms2G", "-Xmx2G")
     }
